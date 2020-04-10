@@ -25,6 +25,18 @@ def reconstruct_trip(tickets, length):
     # Retrieve the None source and append it's destination to route array
     #  Get next distination and append
     for i in tickets:
-        hash_table_insert(hashtable, i[0], i[1])
+        hash_table_insert(hashtable, i.source, i.destination)
 
-    
+    destination = hash_table_retrieve(hashtable, "NONE")
+    for i in range(length - 1):
+        print("Dest", destination)
+        route.append(destination)
+        if destination == "NONE":
+            # reached the end of the trip
+            break
+        else:
+            destination = hash_table_retrieve(hashtable, destination)
+            
+            
+
+    return route
