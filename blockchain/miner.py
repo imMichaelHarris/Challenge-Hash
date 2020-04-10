@@ -1,5 +1,6 @@
 import hashlib
 import requests
+import json
 
 import sys
 
@@ -23,8 +24,13 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = 0
-    #  TODO: Your code here
+    proof = random.randint(20000, 500000000)
+        #Encode and use hexdigest on last proof
+        # Generate a random number hash it and send it to valid proof for checking
+    encoded = json.dumps(last_proof, sort_keys=True)
+    encoded_hash = hashlib.sha256(encoded.encode()).hexdigest()
+    while not valid_proof(encoded_hash, f"{proof}"):
+        proof = random.randint(20000, 500000000)
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -39,8 +45,10 @@ def valid_proof(last_hash, proof):
     IE:  last_hash: ...AE912345, new hash 12345E88...
     """
 
-    # TODO: Your code here!
-    pass
+    # Check if the guess first five digits match the last hash last five digits
+    encoded_proof = f"{proof}".encode()
+    hash_proof = hashlib.sha256(encoded_proof).hexdigest()
+    return last_hash[-5:] == hash_proof[:5]
 
 
 if __name__ == '__main__':

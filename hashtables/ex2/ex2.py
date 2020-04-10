@@ -14,10 +14,29 @@ class Ticket:
 
 def reconstruct_trip(tickets, length):
     hashtable = HashTable(length)
-    route = [None] * length
+    route = [None] * (length - 1)
 
     """
     YOUR CODE HERE
     """
 
-    pass
+    # Go through lickets and add them to hash table
+    # Store the Source as the key and have the value be a tuple of source and destination
+    # Retrieve the None source and append it's destination to route array
+    #  Get next distination and append
+    for i in tickets:
+        hash_table_insert(hashtable, i.source, i.destination)
+
+    destination = hash_table_retrieve(hashtable, "NONE")
+    for i in range(length - 1):
+        print("Dest", destination)
+        route[i] = destination
+        if destination == "NONE":
+            # reached the end of the trip
+            break
+        else:
+            destination = hash_table_retrieve(hashtable, destination)
+            
+            
+
+    return route
