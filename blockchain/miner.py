@@ -24,9 +24,9 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = random.randrange(1, 1000)
-    hashed_proof = hashlib.sha256(proof).hexdigest()
-
+    proof = f"{random.randrange(1, 1000)}"
+    hashed_proof = hashlib.sha256(proof.encode()).hexdigest()
+    print("HERE", hashed_proof)
         #Encode and use hexdigest on last proof
         # Generate a random number hash it and send it to valid proof for checking
     encoded = json.dumps(last_proof, sort_keys=True)
