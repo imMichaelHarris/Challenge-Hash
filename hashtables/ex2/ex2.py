@@ -14,7 +14,7 @@ class Ticket:
 
 def reconstruct_trip(tickets, length):
     hashtable = HashTable(length)
-    route = [None] * length
+    route = [None] * (length - 1)
 
     """
     YOUR CODE HERE
@@ -30,7 +30,7 @@ def reconstruct_trip(tickets, length):
     destination = hash_table_retrieve(hashtable, "NONE")
     for i in range(length - 1):
         print("Dest", destination)
-        route.append(destination)
+        route[i] = destination
         if destination == "NONE":
             # reached the end of the trip
             break
