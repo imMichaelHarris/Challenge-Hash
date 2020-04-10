@@ -23,7 +23,7 @@ def get_indices_of_item_weights(weights, length, limit):
         if hash_table_retrieve(ht, other_weight):
             # Return it tuple both indexes of the weights to match the limit
             the_index_of_other_weight = hash_table_retrieve(ht, other_weight)
-            return ()
+            return (the_index_of_other_weight, i)
 
     return None
 
