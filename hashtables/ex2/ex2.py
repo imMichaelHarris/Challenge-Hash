@@ -20,4 +20,8 @@ def reconstruct_trip(tickets, length):
     YOUR CODE HERE
     """
 
-    pass
+    # Go through lickets and add them to hash table
+    # Store the Source as the key and have the value be a tuple of source and destination
+    # Retrieve the None source and append it's destination to route array
+    #  Get next distination and append
+    
