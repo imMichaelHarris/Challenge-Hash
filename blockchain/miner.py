@@ -24,13 +24,13 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = f"{random.randrange(1, 5000000)}"
+    proof = random.randint(20000, 500000000)
         #Encode and use hexdigest on last proof
         # Generate a random number hash it and send it to valid proof for checking
     encoded = json.dumps(last_proof, sort_keys=True)
     encoded_hash = hashlib.sha256(encoded.encode()).hexdigest()
-    while not valid_proof(encoded_hash, proof):
-        proof = f"{random.randrange(1, 5000000)}"
+    while not valid_proof(encoded_hash, f"{proof}"):
+        proof = random.randint(20000, 500000000)
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
