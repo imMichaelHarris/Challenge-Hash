@@ -29,6 +29,9 @@ def proof_of_work(last_proof):
         # Generate a random number hash it and send it to valid proof for checking
     encoded = json.dumps(last_proof, sort_keys=True)
     encoded_hash = hashlib.sha256(encoded).hexdigest()
+    while not valid_proof(encoded_hash, proof):
+        proof = random.randrange(1, 1000)
+    return proof
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
