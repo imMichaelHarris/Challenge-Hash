@@ -24,7 +24,8 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 0
-    #  TODO: Your code here
+        #Encode and use hexdigest on last proof
+        # Generate a random number hash it and send it to valid proof for checking
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -39,7 +40,8 @@ def valid_proof(last_hash, proof):
     IE:  last_hash: ...AE912345, new hash 12345E88...
     """
 
-    # TODO: Your code here!
+    # Check if the guess first five digits match the last hash last five digits
+    
     pass
 
 
