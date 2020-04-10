@@ -24,16 +24,13 @@ def proof_of_work(last_proof):
     start = timer()
 
     print("Searching for next proof")
-    proof = f"{random.randrange(1, 1000)}"
-    hashed_proof = hashlib.sha256(proof.encode()).hexdigest()
-    print("HERE", hashed_proof)
+    proof = f"{random.randrange(1, 5000000)}"
         #Encode and use hexdigest on last proof
         # Generate a random number hash it and send it to valid proof for checking
     encoded = json.dumps(last_proof, sort_keys=True)
-    encoded_hash = hashlib.sha256(encoded).hexdigest()
+    encoded_hash = hashlib.sha256(encoded.encode()).hexdigest()
     while not valid_proof(encoded_hash, proof):
-        proof = random.randrange(1, 1000)
-        hashed_proof = hashlib.sha256(proof).hexdigest()
+        proof = f"{random.randrange(1, 5000000)}"
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
@@ -49,8 +46,9 @@ def valid_proof(last_hash, proof):
     """
 
     # Check if the guess first five digits match the last hash last five digits
-    
-    return last_hash[-4:] == proof[:4]
+    encoded_proof = f"{proof}".encode()
+    hash_proof = hashlib.sha256(encoded_proof).hexdigest()
+    return last_hash[-5:] == hash_proof[:5]
 
 
 if __name__ == '__main__':
