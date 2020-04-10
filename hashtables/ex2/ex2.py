@@ -24,4 +24,7 @@ def reconstruct_trip(tickets, length):
     # Store the Source as the key and have the value be a tuple of source and destination
     # Retrieve the None source and append it's destination to route array
     #  Get next distination and append
+    for i in tickets:
+        hash_table_insert(hashtable, i[0], i[1])
+
     
